@@ -1,6 +1,10 @@
+
+"use client";
+
+import { useState, useEffect } from 'react';
 import { StatCard } from "@/components/dashboard/StatCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { DollarSign, Package, ShoppingCart, TrendingUp, Users, BarChart, LineChart, Activity } from "lucide-react";
+import { DollarSign, Package, ShoppingCart, Users, BarChart, LineChart, Activity } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -33,14 +37,14 @@ const lowStockItems = [
   { name: "Batata Frita P", stock: 12, threshold: 15, category: "Acompanhamentos" },
 ];
 
-const salesDataChart = [
-  { month: "Jan", sales: Math.floor(Math.random() * 5000) + 1000 },
-  { month: "Fev", sales: Math.floor(Math.random() * 5000) + 1000 },
-  { month: "Mar", sales: Math.floor(Math.random() * 5000) + 1000 },
-  { month: "Abr", sales: Math.floor(Math.random() * 5000) + 1000 },
-  { month: "Mai", sales: Math.floor(Math.random() * 5000) + 1000 },
-  { month: "Jun", sales: Math.floor(Math.random() * 5000) + 1000 },
-]
+const initialSalesDataChart = [
+  { month: "Jan", sales: 0 },
+  { month: "Fev", sales: 0 },
+  { month: "Mar", sales: 0 },
+  { month: "Abr", sales: 0 },
+  { month: "Mai", sales: 0 },
+  { month: "Jun", sales: 0 },
+];
 
 const chartConfig = {
   sales: {
@@ -67,6 +71,19 @@ const lineChartConfig = {
 } satisfies ChartConfig
 
 export default function DashboardPage() {
+  const [salesDataChart, setSalesDataChart] = useState(initialSalesDataChart);
+
+  useEffect(() => {
+    setSalesDataChart([
+      { month: "Jan", sales: Math.floor(Math.random() * 5000) + 1000 },
+      { month: "Fev", sales: Math.floor(Math.random() * 5000) + 1000 },
+      { month: "Mar", sales: Math.floor(Math.random() * 5000) + 1000 },
+      { month: "Abr", sales: Math.floor(Math.random() * 5000) + 1000 },
+      { month: "Mai", sales: Math.floor(Math.random() * 5000) + 1000 },
+      { month: "Jun", sales: Math.floor(Math.random() * 5000) + 1000 },
+    ]);
+  }, []);
+
   return (
     <div className="flex flex-col gap-6">
       <h1 className="text-3xl font-bold font-headline text-foreground">Painel de Controle</h1>

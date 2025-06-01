@@ -1,5 +1,7 @@
+
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import type { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface StatCardProps {
   title: string;
@@ -26,6 +28,3 @@ export function StatCard({ title, value, icon: Icon, description, className, tre
     </Card>
   );
 }
-
-// Helper for cn if not already available (though it should be from utils)
-const cn = (...inputs: any[]) => inputs.filter(Boolean).join(' ');
